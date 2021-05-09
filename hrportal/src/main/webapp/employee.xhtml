@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition template="/template/template.xhtml">
+            <ui:define name="maincontent">
+                <b:panel collapsible="false" rendered="#{employeeBean.list}">
+                    <f:facet name="heading">
+                        <b:panelGrid colSpans="12" styleClass="ui-fluid">
+                            <p:outputLabel value="LIST OF EMPLOYEES"/>
+                        </b:panelGrid>                        
+                    </f:facet>
+                    <p:dataTable id="employeeTab" value="#{employeeBean.collections}" var="emp" rows="10"
+                                 paginator="true" paginatorAlwaysVisible="false" paginatorPosition="top"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" reflow="true">
+                        <f:facet name="header">
+                            <p:toolbar>
+                                <f:facet name="left">
+                                    <b:commandLink iconSize="2x"  iconAwesome="fa-plus-square-o" action="#{employeeBean.addOrUpdate(null)}"  update="@form"/>
+                                </f:facet>
+                            </p:toolbar>
+                        </f:facet>
+                        <p:column headerText="First Name">
+                            <h:outputText value="#{emp.firstName}"/>
+                        </p:column>
+                        <p:column headerText="Last Name">
+                            <h:outputText value="#{emp.lastName}"/>
+                        </p:column>
+                        <p:column headerText="Employee Number">
+                            <h:outputText value="#{emp.employeeNumber}"/>
+                        </p:column>
+                        <p:column headerText="Action" styleClass="medium">
+                            <b:commandLink iconSize="lg"  iconAwesome="fa-pencil" action="#{employeeBean.addOrUpdate(emp)}" update="@form"/>
+                            <p:spacer width="15px"/>
+                            <b:commandLink iconSize="lg"  iconAwesome="fa-remove" action="#{employeeBean.delete(emp)}" update="@form"/>
+                        </p:column>
+                    </p:dataTable>
+                </b:panel>
+                <b:panel rendered="#{employeeBean.add}" collapsible="false">
+                    <f:facet name="heading">
+                        <p:outputLabel value="Employee Details"/>
+                    </f:facet>
+                    <b:panelGrid colSpans="12" style-class="ui-fluid">
+                        <b:panelGrid  colSpans="12" size="md" style-class="ui-fluid">
+                            <p:fieldset legend="Personal Details">
+                                <b:formGroup styleClass="ui-fluid">
+                                    <p:outputLabel value="First Name"/>
+                                    <p:inputText value="#{employeeBean.entity.firstName}"/>
+                                </b:formGroup>
+                                <b:formGroup styleClass="ui-fluid">
+                                    <p:outputLabel value="Last Name"/>
+                                    <p:inputText value="#{employeeBean.entity.lastName}"/>
+                                </b:formGroup>
+                                <b:formGroup styleClass="ui-fluid">
+                                    <p:outputLabel value="Employee Number"/>
+                                    <p:inputText value="#{employeeBean.entity.employeeNumber}"/>
+                                </b:formGroup>
+                            </p:fieldset>                            
+                        </b:panelGrid>
+                        <b:panelGrid  colSpans="12" size="md" style-class="ui-fluid">
+                            <p:fieldset legend="Address Details">
+                                <p:dataGrid value="#{employeeBean.entity.addresses}" var="address" columns="2"> 
+                                    <p:fieldset legend="#{address.addressType.toString()}">
+                                        <b:inputText value="#{address.addressLine1}" placeholder="Enter House/Unit/Box Number" label="Address Line 1"/>
+                                        <b:inputText value="#{address.addressLine2}" placeholder="Enter Street Name" label="Address Line 2"/>
+                                        <b:inputText value="#{address.area}" placeholder="Enter Postal Area/Place" label="Area/Place"/>
+                                        <b:inputText value="#{address.code}" placeholder="Enter Postal Code" label="Code"/>
+                                    </p:fieldset>
+                                </p:dataGrid>
+                            </p:fieldset>
+                        </b:panelGrid>
+                        <b:panelGrid  colSpans="12" size="md" style-class="ui-fluid">
+                            <p:fieldset legend="Contact Details">
+                                <p:dataGrid value="#{employeeBean.entity.contacts}" var="contact" columns="2"> 
+                                    <b:inputText value="#{contact.contactDetails}" placeholder="Enter Contact Details" label="#{contact.contactType.toString()}"/>
+                                </p:dataGrid>
+                            </p:fieldset>
+                        </b:panelGrid>
+                    </b:panelGrid>
+                    <f:facet name="footer">
+                        <p:toolbar>
+                            <f:facet name="right">
+                                <b:commandButton size="xs" iconAwesome="fa-save" value="Save"  look="success" action="#{employeeBean.save(employeeBean.entity)}" update="@form"/>
+                                <p:spacer width="15px"/>
+                                <b:commandButton size="xs" iconAwesome="fa-remove" value="Cancel" look="danger" action="#{employeeBean.cancel()}" immediate="true" update="@form"/>
+                            </f:facet>
+                        </p:toolbar> 
+                    </f:facet>
+                </b:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

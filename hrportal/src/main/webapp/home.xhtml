@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition template="/template/maintemplate.xhtml">
+            <ui:define name="maincontent">
+                <b:panel collapsible="false">
+                    <b:panelGrid colSpans="12" style-class="ui-fluid">
+                        <p:graphicImage name="home-main.jpg" library="images" width="100%" height="400"/>
+                    </b:panelGrid>
+                </b:panel>
+                <b:panel collapsible="false">
+                    <b:panelGrid colSpans="2,8,2" style-class="ui-fluid">
+                        <b:panelGrid colSpans="12" style-class="ui-fluid">                            
+                        </b:panelGrid>
+                        <b:panelGrid colSpans="12" style-class="ui-fluid">
+                            <h1 style="text-align: center"><b>About HRS</b></h1>
+                            <h:outputText value="The Human Resource System [HRS] is one of South Africa's leading Human Resource Management System.
+                                          The system allows employers to manage employee details.It has services that allows employers to capture their new employee details, 
+                                          to edit their existing employees details, to update their existing employees details as well as removing former or current employees details completely from their system. All you have to do is simply sign in to get started"/>
+                            <b:panelGrid colSpans="5,2,5" style-class="ui-fluid">
+                                <b:panelGrid colSpans="12" style-class="ui-fluid">                                    
+                                </b:panelGrid>
+                                <b:panelGrid colSpans="12" style-class="ui-fluid">
+                                    <b:commandLink style="text-align: center" action="#{homeBean.login()}" iconAwesome="fa-sign-out" value="Sign In"/>                              
+                                </b:panelGrid>
+                                <b:panelGrid colSpans="12" style-class="ui-fluid">                                    
+                                </b:panelGrid>                              
+                            </b:panelGrid>
+                        </b:panelGrid>
+                        <b:panelGrid colSpans="12" style-class="ui-fluid">                            
+                        </b:panelGrid>
+                    </b:panelGrid>
+                </b:panel>
+                <b:panel collapsible="false">
+                    <b:panelGrid colSpans="6,6" style-class="ui-fluid">
+                        <b:panelGrid colSpans="12" style-class="ui-fluid">
+                            <h4><b>In Partnership with</b></h4>
+                            <ul class="alt">
+                                <li><a href="https://www.sars.gov.za">South African Revenue Services [SARS]</a></li>
+                                <li><a href="https://www.dha.gov.za/">Department of Home Affairs [DHA]</a></li>
+                                <li><a href="https://www.labour.gov.za">Department of Labour [Labour]</a></li>
+                            </ul>
+                        </b:panelGrid>
+                        <b:panelGrid colSpans="12" style-class="ui-fluid">
+                            <h4><b>Social Media</b></h4>
+                            <ul class="plain">
+                                <li><a href="https://twitter.com/?lang=en"><i class="icon fa-twitter"></i>Twitter</a></li>
+                                <li><a href="https://www.facebook.com/"><i class="icon fa-facebook"></i>Facebook</a></li>
+                                <li><a href="https://www.instagram.com/accounts/login/"><i class="icon fa-instagram"></i>Instagram</a></li>
+                            </ul>
+                        </b:panelGrid>
+                    </b:panelGrid>
+                </b:panel>
+            </ui:define>                
+        </ui:composition>
+    </body>
+</html>
